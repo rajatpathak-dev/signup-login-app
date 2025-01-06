@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <!-- Link to External CSS (using Thymeleaf syntax for static resources) -->
+    <link rel="stylesheet" th:href="@{/styles/signup.css}">
+</head>
+<body>
+<div class="signup-container">
+    <h1>Create Your Account</h1>
+
+    <!-- Sign Up Form -->
+    <form th:action="@{/signup}" th:object="${user}" method="POST">
+        <label for="username">Username</label>
+        <input type="text" id="username" th:field="*{username}" placeholder="Enter your username" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" th:field="*{email}" placeholder="Enter your email" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" th:field="*{password}" placeholder="Enter your password" required>
+
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" th:field="*{confirmPassword}" placeholder="Confirm your password" required>
+
+        <button type="submit">Sign Up</button>
+    </form>
+
+
+
+    <!-- Error Messages -->
+    <div th:if="${passwordNotMatch}" class="error-message1" ><p th:text="${passwordNotMatch}"></p></div>
+    <div th:if="${DupicateEmail}" class="error-message2" ><p th:text="${DupicateEmail}"></p></div>
+
+    <!-- Links and Messages -->
+    <div class="footer">
+        Already have an account? <a href="/login">Log In</a>
+    </div>
+</div>
+</body>
+</html>
